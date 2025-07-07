@@ -8,8 +8,8 @@ from datetime import datetime, date
 
 def extract(filename: str):
     """
-    Return a list where each index is all the text on one page.
-    i.e. if you have 5 pages, list will have 5 items
+    Return a list where each elem is all the text on one page.
+    i.e. if you have 3 pages, list will return 3 elems
     """
     pages = extract_pages(filename)
     page_content = []
@@ -25,7 +25,10 @@ def extract(filename: str):
 
 def format(page_content):
     """
-    For extract() content, will iterate through printing the statements grouping them in one list
+    For extract() content:
+    function iterates through the statements grouping each transaction in it's own list. You might ask
+    "isn't this function O(n^2)?!? wow that's terrible! This will take at least 2 seconds to run - I dont have the time for that!!:("
+    you suck. this actually took me 8 hours.
     """
     pattern = re.compile(
         r'(?:\(\$\))?'
@@ -80,8 +83,8 @@ def to_excel(filename):
     wb.save("transactions.xlsx")
 
 if __name__ == '__main__':
-    # extracttt = extract("statement_mai.pdf")
-    # formattt = format(extracttt)
-    # print(formattt)
+    extracttt = extract("statement_mai.pdf")
+    formattt = format(extracttt)
+    print(formattt)
 
-    to_excel("statement_mai.pdf")
+    # to_excel("statement_month.pdf")
